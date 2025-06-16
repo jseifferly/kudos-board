@@ -6,7 +6,9 @@ export default function BoardList() {
     return (
         <div>
             <button>Create a New Board</button>
-            <BoardCard />
+            <section className='board-list'>
+                <BoardCard />
+            </section>
         </div>
     );
 
