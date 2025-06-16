@@ -9,7 +9,7 @@ export default function BoardList({ data }) {
 
             <section className='board-list'>
                 {data.map((board) => {
-                    return <BoardCard board={board}/>
+                    return <BoardCard board={board} key={board.id}/>
                 })}
             </section>
 
