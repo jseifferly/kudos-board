@@ -1,14 +1,15 @@
+import '../styles/BoardCard.css'
 import BoardButtons from "./BoardButtons";
 
-export default function BoardCard() {
+export default function BoardCard({ board }) {
 
     return (
-        <div>
-            <img src="" alt="" />
-            <h3>Title</h3>
-            <p>Type</p>
+        <article className='board-card'>
+            <img src={board.img} alt="" />
+            <h3>{board.title}</h3>
+            <p>{board.type}</p>
             <BoardButtons />
-        </div>
+        </article>
     );
 
 }

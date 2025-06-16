@@ -4,7 +4,7 @@ export default function SearchBar() {
 
     return (
         <div>
-            <section>
+            <section className='search-bar'>
                 <input type="text" placeholder='Search Boards...'/>
                 <button>Search</button>
                 <button>Clear</button>
