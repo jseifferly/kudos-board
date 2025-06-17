@@ -1,13 +1,22 @@
 export default function filterBoards(data, type) {
 
+    const filteredData = [...data]
+
     if(type === 'all'){
-        return data;
+        return filteredData;
     }else if(type === 'celebration'){
-        return data.filter(board => board.type === 'Celebration')
+        return filteredData.filter(board => board.type === 'Celebration')
     }else if(type === 'thanks'){
-        return data.filter(board => board.type === 'Thank You')
+        return filteredData.filter(board => board.type === 'Thank You')
     }else if(type === 'inspiration'){
-        return data.filter(board => board.type === 'Inspiration')
+        return filteredData.filter(board => board.type === 'Inspiration')
+    }else if(type == 'recent') {
+        const sortedData = filteredData.sort((a,b) => {
+            const dateA = new Date (a.date)
+            const dateB = new Date (b.date)
+            return dateA.getTime() - dateB.getTime();
+        })
+        return sortedData.slice(0, Math.min(6, data.length))
     }
 
     //Add recent filter

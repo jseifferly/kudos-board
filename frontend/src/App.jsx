@@ -15,6 +15,7 @@ function App() {
 
   const filterData = (type) => {
     const filteredData = filterBoards(data,type);
+    console.log(data)
     setRenderedBoards(filteredData);
   }
 
