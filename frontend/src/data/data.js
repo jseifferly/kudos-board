@@ -9,7 +9,7 @@ const data = [
         id: 1,
         img: "../public/medal.svg",
         title: "Wuff",
-        type: "Inspirational"
+        type: "Inspiration"
     },
     {
         id: 2,

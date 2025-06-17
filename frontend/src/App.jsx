@@ -10,13 +10,19 @@ import data from './data/data'
 
 function App() {
 
-  const [renderedBoard, setRenderedBoards] = useState([data])
+  //Create a state to store the currently rendered boards
+  const [renderedBoards, setRenderedBoards] = useState(data)
+
+  const filterData = (type) => {
+    const filteredData = filterBoards(data,type);
+    setRenderedBoards(filteredData);
+  }
 
   return (
     <>
       <Header />
-      <Navagation />
-      <BoardList data={data}/>
+      <Navagation filter={filterData}/>
+      <BoardList data={renderedBoards}/>
       <Footer />
     </>
   )

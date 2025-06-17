@@ -1,15 +1,13 @@
 export default function filterBoards(data, type) {
 
-    const filterdArr = [...data];
-
     if(type === 'all'){
-        return filteredArr;
+        return data;
     }else if(type === 'celebration'){
-        return filterdArr.filter(board => board.type === 'celebration')
+        return data.filter(board => board.type === 'Celebration')
     }else if(type === 'thanks'){
-        return filterdArr.filter(board => board.type === 'thank you')
+        return data.filter(board => board.type === 'Thank You')
     }else if(type === 'inspiration'){
-        return filterdArr.filter(board => board.type === 'inspiration')
+        return data.filter(board => board.type === 'Inspiration')
     }
 
     //Add recent filter
