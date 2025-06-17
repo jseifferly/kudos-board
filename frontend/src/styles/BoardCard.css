@@ -1,4 +1,7 @@
 .board-card {
     width: 15%;
     flex-basis: 300px;
+
+    border: 2px solid gray;
+    border-radius: 10px;
 }

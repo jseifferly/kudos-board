@@ -22,7 +22,7 @@ export default function SearchBar({ search }) {
 
     return (
         <div>
-            <section className='search-bar'>
+            <section className='search-box'>
                 <input type="text" placeholder='Search Boards...' value={searchTerm} onChange={updateSearchTerm} onKeyDown={handleKeyDown}/>
                 <button onClick={() => search(searchTerm)}>Search</button>
                 <button onClick={handleClear}>Clear</button>
