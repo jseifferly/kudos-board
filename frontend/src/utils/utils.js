@@ -1,4 +1,4 @@
-export default function filterBoards(data, type) {
+export function filterBoards(data, type) {
 
     const filteredData = [...data]
 
@@ -18,7 +18,11 @@ export default function filterBoards(data, type) {
         })
         return sortedData.slice(0, Math.min(6, data.length))
     }
+}
 
-    //Add recent filter
+export function searchForSubstring(data, string) {
+
+    const filteredData = [...data]
+    return filteredData.filter(board => board.title.includes(string));
 
 }

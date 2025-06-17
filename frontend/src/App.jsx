@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Navagation from './components/Navagation'
 import BoardList from './components/BoardList'
 import Footer from './components/Footer'
-import filterBoards from './utils/utils'
+import { filterBoards, searchForSubstring} from './utils/utils.js'
 
 import data from './data/data'
 
@@ -15,14 +15,18 @@ function App() {
 
   const filterData = (type) => {
     const filteredData = filterBoards(data,type);
-    console.log(data)
     setRenderedBoards(filteredData);
+  }
+
+  const searchData = (searchTerm) => {
+    const searchedData = searchForSubstring(data, searchTerm);
+    setRenderedBoards(searchedData);
   }
 
   return (
     <>
       <Header />
-      <Navagation filter={filterData}/>
+      <Navagation filter={filterData} search={searchData}/>
       <BoardList data={renderedBoards}/>
       <Footer />
     </>
