@@ -1,0 +1,42 @@
+.modalDisplay {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    background-color: rgb(0,0,0,0.4);
+}
+
+.modalHidden {
+    display: none;
+}
+
+.modalContent {
+    background-color: #CFDBDC;
+    color: black;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 1%;
+    border: 1px solid #888;
+    width: 30%;
+    height: 30%;
+
+    border-radius: 30px;
+    box-shadow: 10px 10px 5px rgb(79, 79, 79);
+    overflow-y: auto;
+}
+
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
