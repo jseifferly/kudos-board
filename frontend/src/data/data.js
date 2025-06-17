@@ -1,5 +1,5 @@
 const data = [
-    {//YYYY-MM-DD
+    {
         id: 0,
         img: "../public/medal.svg",
         title: "Meow",
