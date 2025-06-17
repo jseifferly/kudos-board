@@ -4,4 +4,6 @@
 
 .search-box input {
     width: 40%;
+    border: 2px #3C6E71 solid;
+    border-radius: 10px;
 }

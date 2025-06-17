@@ -1,8 +1,9 @@
 footer {
-    background-color: rgb(247, 94, 94);
+    background-color: #3C6E71;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+    color: #CFDBDC;
 }
