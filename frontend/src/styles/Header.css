@@ -1,5 +1,5 @@
 header {
-    background-color: #3C6E71;
+    background-color: #234343;
     width: 100%;
     color: #CFDBDC;
 }
@@ -7,4 +7,5 @@ header {
 header img {
     margin: 0 auto;
     width: 4%;
+    filter: invert(99%) sepia(65%) saturate(164%) hue-rotate(134deg) brightness(88%) contrast(95%);
 }
