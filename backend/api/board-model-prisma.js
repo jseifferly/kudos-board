@@ -21,4 +21,6 @@ module.exports = {
         const created = await prisma.board.create({data});
         return created;
     }
+
+    //TODO: Add the delete method to remove rows from database
 }

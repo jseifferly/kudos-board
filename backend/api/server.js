@@ -65,6 +65,8 @@ server.post('/api/boards', async (req, res, next) => {
     }
 })
 
+//TODO: Add delete routing, possibly include ID validation (this could be used in the [GET] with ID routing)
+
 // [CATCH-ALL] 
 server.use((req, res, next) => {
     console.log('Server Catch all');
