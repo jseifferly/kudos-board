@@ -90,7 +90,8 @@ server.get('/api/boards/:id/cards', async (req, res, next) => {
     try {
         const board = await Board.findBoardById(id);
         if (board) {
-            res.json(board.cards);
+            const cards = await Board.findCardsOnBoard(id);
+            res.json(cards);
         }else {
             next({status: 404, message: 'Board not found'});
         }
@@ -99,10 +100,26 @@ server.get('/api/boards/:id/cards', async (req, res, next) => {
     }
 })
 
-
-
-
-
+server.post('/api/boards/:id/cards', async (req, res, next) => {
+    const id = Number(req.params.id);
+    try {
+        const board = await Board.findBoardById(id);
+        if (board) {
+            const newCard = req.body;
+            newCard.boardID = id;
+            const validationError = validatePostData(newCard.title, newCard.owner, newCard.description, newCard.gif);
+            if(validationError){
+                next(validationError);
+            }
+            const created = await Board.createCard(id, newCard);
+            res.status(201).json(created);
+        }else {
+            next({status: 404, message: 'Board not found'});
+        }
+    } catch (err) {
+        next(err);
+    }
+})
 
 // [CATCH-ALL] 
 server.use((req, res, next) => {
