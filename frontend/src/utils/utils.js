@@ -2,15 +2,16 @@ export function filterBoards(data, type) {
 
     const filteredData = [...data]
 
-    if(type === 'all'){
+    switch(type) {
+    case 'all':
         return filteredData;
-    }else if(type === 'celebration'){
+    case 'celebration':
         return filteredData.filter(board => board.type === 'Celebration')
-    }else if(type === 'thanks'){
+    case 'thanks':
         return filteredData.filter(board => board.type === 'Thank You')
-    }else if(type === 'inspiration'){
+    case 'inspiration':
         return filteredData.filter(board => board.type === 'Inspiration')
-    }else if(type == 'recent') {
+    case 'recent':
         const sortedData = filteredData.sort((a,b) => {
             const dateA = new Date (a.date)
             const dateB = new Date (b.date)
