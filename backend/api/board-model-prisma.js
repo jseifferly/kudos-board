@@ -57,4 +57,9 @@ module.exports = {
         const updated = await prisma.card.update({where: {id}, data: changes})
         return updated
     },
+
+    async deleteCard(id) {
+        const deleted = await prisma.card.delete({where: { id }});
+        return deleted;
+    },
 }

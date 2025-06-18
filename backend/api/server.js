@@ -52,7 +52,7 @@ server.post('/api/boards', async (req, res, next) => {
     }
 })
 
-// [DELETE] /api/boards
+// [DELETE] /api/boards/:id
 server.delete('/api/boards/:id', async (req, res, next) => {
     const id = Number(req.params.id);
     try{
@@ -91,8 +91,7 @@ server.put('/api/boards/:boardID/cards/:cardID', async (req, res, next) => {
     const [boardID, cardID] = [Number(req.params.boardID), Number(req.params.cardID)];
     const changes = req.body;
     try {
-        const board = await Board.findBoardById(boardID);
-        const card = await Board.findCardByID(cardID);
+        const [board, card] = await Promise.all([Board.findBoardById(boardID), Board.findCardByID(cardID)])
         if(board && card) {
             const updatedCard = await Board.updateCard(cardID, changes);
             res.json(updatedCard);
@@ -120,6 +119,22 @@ server.post('/api/boards/:id/cards', async (req, res, next) => {
             res.status(201).json(created);
         }else {
             next({status: 404, message: 'Board not found'});
+        }
+    } catch (err) {
+        next(err);
+    }
+})
+
+// [DELETE] /api/boards/:id/cards/:id
+server.delete('/api/boards/:boardID/cards/:cardID', async (req, res, next) => {
+    const [boardID, cardID] = [Number(req.params.boardID), Number(req.params.cardID)];
+    try {
+        const [board, card] = await Promise.all([Board.findBoardById(boardID), Board.findCardByID(cardID)])
+        if(board && card) {
+            const deleted = await Board.deleteCard(cardID);
+            res.json(deleted);
+        }else {
+            next({status: 404, message: 'Board or Card not found'});
         }
     } catch (err) {
         next(err);
