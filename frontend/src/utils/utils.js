@@ -1,22 +1,19 @@
-export function filterBoards(data, type) {
+export async function filterBoards (data, type) {
 
-    const filteredData = [...data]
+    const BASE_URL = import.meta.env.VITE_BASE_URL
+    const FILTER_URL = new URL(`boards/?type=${type}`,BASE_URL)
 
     if(type === 'all'){
-        return filteredData;
-    }else if(type === 'celebration'){
-        return filteredData.filter(board => board.type === 'Celebration')
-    }else if(type === 'thanks'){
-        return filteredData.filter(board => board.type === 'Thank You')
-    }else if(type === 'inspiration'){
-        return filteredData.filter(board => board.type === 'Inspiration')
+        return await httpRequest(BASE_URL,"GET");
     }else if(type == 'recent') {
-        const sortedData = filteredData.sort((a,b) => {
-            const dateA = new Date (a.date)
-            const dateB = new Date (b.date)
-            return dateA.getTime() - dateB.getTime();
-        })
-        return sortedData.slice(0, Math.min(6, data.length))
+        const filteredData = await httpRequest(BASE_URL,"GET")
+        .then(data => {
+            data.sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+            return data.slice(0, Math.min(6, data.length));
+        });
+        return filteredData;
+    }else {
+        return await httpRequest(FILTER_URL, "GET");
     }
 }
 
@@ -24,7 +21,6 @@ export function searchForSubstring(data, string) {
 
     const filteredData = [...data]
     return filteredData.filter(board => board.title.includes(string));
-
 }
 
 export function httpRequest(URL, method, data) {

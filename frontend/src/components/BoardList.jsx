@@ -15,7 +15,7 @@ export default function BoardList({ data, onDelete, onCreate }) {
         setDisplayForm('modalHidden')
     }
 
-    if(data){
+    if(data && data.length > 0){
     return (
             <div>
                 <button onClick={showForm}>Create a New Board</button>

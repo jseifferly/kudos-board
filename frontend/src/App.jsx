@@ -9,12 +9,11 @@ import { filterBoards, searchForSubstring, httpRequest} from './utils/utils.js'
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function App() {
-  
+
   const [renderedBoards, setRenderedBoards] = useState([])
 
   useEffect(() => {
-    httpRequest(BASE_URL, 'GET').then(boardList => {
-    setRenderedBoards(boardList)}) 
+    httpRequest(BASE_URL, 'GET').then(boardList => {setRenderedBoards(boardList)});
   },[])
 
   const handleDelete = async (id) => {
@@ -28,8 +27,8 @@ function App() {
     setRenderedBoards([...renderedBoards,newBoard]);
   }
 
-  const filterData = (type) => {
-    const filteredData = filterBoards(renderedBoards,type);
+  const filterData = async (type) => {
+    const filteredData = await filterBoards(renderedBoards,type);
     setRenderedBoards(filteredData);
   }
 
