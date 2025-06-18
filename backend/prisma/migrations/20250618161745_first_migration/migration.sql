@@ -22,3 +22,6 @@ CREATE TABLE "Card" (
 
     CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
 );
+
+-- AddForeignKey
+ALTER TABLE "Card" ADD CONSTRAINT "Card_boardID_fkey" FOREIGN KEY ("boardID") REFERENCES "Board"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

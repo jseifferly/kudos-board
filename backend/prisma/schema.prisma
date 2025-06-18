@@ -19,6 +19,7 @@ model Board {
     author      String?
     type        String
     img         String
+    cards       Card[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @default(now())
 }
@@ -29,5 +30,6 @@ model Card {
     description String
     gif         String
     owner       String?
+    board       Board @relation(fields: [boardID], references: [id])
     boardID     Int
 }
