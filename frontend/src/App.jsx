@@ -15,9 +15,15 @@ function App() {
   const [renderedBoards, setRenderedBoards] = useState([])
 
   useEffect(() => {
-    httpRequest(BASE_URL).then(boardList => {
+    httpRequest(BASE_URL, 'GET').then(boardList => {
       setRenderedBoards(boardList)}) 
   },[])
+
+  const handleDelete = id => {
+    setRenderedBoards(renderedBoards.filter(element => element.id !== id));
+    const BOARD_URL = new URL(`boards/${id}`,BASE_URL)
+    httpRequest(BOARD_URL,'DELETE')
+  }
 
   const filterData = (type) => {
     const filteredData = filterBoards(data,type);
@@ -33,7 +39,7 @@ function App() {
     <>
       <Header />
       <Navagation filter={filterData} search={searchData}/>
-      <BoardList data={renderedBoards}/>
+      <BoardList data={renderedBoards} onDelete={handleDelete}/>
       <Footer />
     </>
   )

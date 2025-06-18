@@ -1,11 +1,12 @@
 import { Link } from "react-router"
+import { httpRequest } from "../utils/utils";
 
-export default function BoardButtons() {
+export default function BoardButtons({ id, onDelete }) {
 
     return(
         <div>
             <Link to='/boards'>View Board</Link>
-            <button>Delete Board</button>
+            <button onClick={() => onDelete(id)}>Delete Board</button>
         </div>
     );
 

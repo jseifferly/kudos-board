@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BoardCard from './BoardCard';
 import CreateBoardForm from './CreateBoardForm';
 
-export default function BoardList({ data }) {
+export default function BoardList({ data, onDelete }) {
     
     if(data){
     return (
@@ -13,7 +13,7 @@ export default function BoardList({ data }) {
 
                 <section className='board-list'>
                     {data.map((board) => {
-                        return <BoardCard board={board} key={board.id}/>
+                        return <BoardCard board={board} key={board.id} onDelete={onDelete}/>
                     })}
                 </section>
 
