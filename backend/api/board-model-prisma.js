@@ -20,7 +20,11 @@ module.exports = {
         // INSERT INTO "Board" (title, ?author?, type, img)
         const created = await prisma.board.create({data});
         return created;
-    }
+    },
 
-    //TODO: Add the delete method to remove rows from database
+    async delete(id) {
+        // DELETE FROM "Board" WHERE id = 1;
+        const deleted = await prisma.board.delete({where: { id }});
+        return deleted;
+    },
 }

@@ -65,12 +65,17 @@ server.post('/api/boards', async (req, res, next) => {
     }
 })
 
-//TODO: Add delete routing, possibly include ID validation (this could be used in the [GET] with ID routing)
 // [DELETE] /api/boards
 server.delete('/api/boards/:id', async (req, res, next) => {
     const id = Number(req.params.id);
     try{
-
+        const board = await Board.findById(id);
+        if(board) {
+            const deleted = await Board.delete(id);
+            res.json(deleted);
+        } else {
+            next({status: 404, message: 'Board not found'});
+        }
     } catch (err) {
         next(err);
     }
