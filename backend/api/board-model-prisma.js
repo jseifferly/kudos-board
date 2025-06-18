@@ -15,4 +15,10 @@ module.exports = {
         const board = await prisma.board.findUnique({where: { id }})
         return board;
     },
+
+    async create(data) {
+        // INSERT INTO "Board" (title, ?author?, type, img)
+        const created = await prisma.board.create({data});
+        return created;
+    }
 }
