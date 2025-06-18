@@ -16,14 +16,6 @@ module.exports = {
         return board;
     },
 
-    async updateBoard(id, changes) {
-        const updated = await prisma.board.update({
-            data: changes,
-            where: {id}
-        }); 
-        return updated
-    },
-
     async createBoard(data) {
         // INSERT INTO "Board" (title, ?author?, type, img)
         const created = await prisma.board.create({data});
@@ -41,9 +33,28 @@ module.exports = {
         return cardsOnBoard;
     },
 
+    async findCardByID(id) {
+        const card = await prisma.card.findUnique({where: {id}});
+        return card;
+    },
+
     async createCard(boardId, data) {
         const created = await prisma.card.create({data})
-        this.updateBoard(boardId, { cards: {push: created}})
+        const updatedBoard = await prisma.board.update({
+            where: {
+                id: boardId,
+            },
+            data: {
+                cards: {
+                    connect: { id: created.id}
+                },
+            },
+        });
         return created;
+    },
+
+    async updateCard(id, changes) {
+        const updated = await prisma.card.update({where: {id}, data: changes})
+        return updated
     },
 }

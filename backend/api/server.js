@@ -25,21 +25,6 @@ server.get('/api/boards', async (req,res,next) => {
     }
 })
 
-// [GET] /api/boards/:id
-server.get('/api/boards/:id', async (req, res, next) => {
-    const id = Number(req.params.id);
-    try {
-        const board = await Board.findBoardById(id);
-        if(board) {
-            res.json(board);
-        }else {
-            next({ status: 404, message: 'No board found match the id' });
-        }
-    }catch (err){
-        next(err);
-    }
-})
-
 // [POST/VALIDATE-DATA]
 const validatePostData = (title, author, type, img) => {
     if (!title || !type || !img){
@@ -85,6 +70,7 @@ server.delete('/api/boards/:id', async (req, res, next) => {
 
 // --------------------CARD ROUTING------------------- //
 
+// [GET] /api/boards/:id/cards
 server.get('/api/boards/:id/cards', async (req, res, next) => {
     const id = Number(req.params.id);
     try {
@@ -100,6 +86,25 @@ server.get('/api/boards/:id/cards', async (req, res, next) => {
     }
 })
 
+// [PUT] /api/boards/:boardID/cards/:cardID
+server.put('/api/boards/:boardID/cards/:cardID', async (req, res, next) => {
+    const [boardID, cardID] = [Number(req.params.boardID), Number(req.params.cardID)];
+    const changes = req.body;
+    try {
+        const board = await Board.findBoardById(boardID);
+        const card = await Board.findCardByID(cardID);
+        if(board && card) {
+            const updatedCard = await Board.updateCard(cardID, changes);
+            res.json(updatedCard);
+        }else {
+            next({status: 404, message: 'Board or Card not found'});
+        }
+    } catch (err) {
+        next(err);
+    }
+})
+
+// [POST] /api/boards/:id/cards
 server.post('/api/boards/:id/cards', async (req, res, next) => {
     const id = Number(req.params.id);
     try {

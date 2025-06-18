@@ -30,6 +30,7 @@ model Card {
     description String
     gif         String
     owner       String?
+    votes       Int @default(0)
     board       Board @relation(fields: [boardID], references: [id])
     boardID     Int
 }
