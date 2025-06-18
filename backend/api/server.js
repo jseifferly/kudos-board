@@ -38,8 +38,16 @@ server.get('/api/boards/:id', async (req, res, next) => {
     }
 })
 
+// [CATCH-ALL] 
 server.use((req, res, next) => {
     console.log('Server Catch all')
 })
+
+//  [ERROR-HANDLING]
+server.use((err, req, res, next) => {
+    const { message, status = 500 } = err
+    res.status(status).json({ message }) // Unsafe in prod
+})
+
 
 module.exports = server
