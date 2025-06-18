@@ -5,7 +5,7 @@ export default function BoardButtons({ id, onDelete }) {
 
     return(
         <div>
-            <Link to='/boards'>View Board</Link>
+            <Link to={`/board/${id}`}>View Board</Link>
             <button onClick={() => onDelete(id)}>Delete Board</button>
         </div>
     );

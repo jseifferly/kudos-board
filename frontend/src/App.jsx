@@ -1,9 +1,9 @@
 import './App.css'
 import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Navagation from './components/Navagation'
-import BoardList from './components/BoardList'
-import Footer from './components/Footer'
+import Header from './components/Header.jsx'
+import Navagation from './components/Navagation.jsx'
+import BoardList from './components/BoardList.jsx'
+import Footer from './components/Footer.jsx'
 import { filterBoards, searchForSubstring, httpRequest} from './utils/utils.js'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
