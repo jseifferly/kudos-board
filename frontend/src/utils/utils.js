@@ -27,8 +27,13 @@ export function searchForSubstring(data, string) {
 
 }
 
-export function httpRequest(URL, method) {
-    return fetch(URL, {method: method})
+export function httpRequest(URL, method, data) {
+    return fetch(URL, {method: method,
+                headers: {
+                    'Content-Type': 'application/json', // Indicate the data type
+                },
+                body: JSON.stringify(data), // Convert data to JSON string
+                })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
