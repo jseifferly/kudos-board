@@ -18,6 +18,7 @@ CREATE TABLE "Card" (
     "description" TEXT NOT NULL,
     "gif" TEXT NOT NULL,
     "owner" TEXT,
+    "votes" INTEGER NOT NULL DEFAULT 0,
     "boardID" INTEGER NOT NULL,
 
     CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
