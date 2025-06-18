@@ -1,17 +1,23 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Navagation from './components/Navagation'
 import BoardList from './components/BoardList'
 import Footer from './components/Footer'
-import { filterBoards, searchForSubstring} from './utils/utils.js'
+import { filterBoards, searchForSubstring, httpRequest} from './utils/utils.js'
 
 import data from './data/data'
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 function App() {
 
-  //Create a state to store the currently rendered boards
-  const [renderedBoards, setRenderedBoards] = useState(data)
+  const [renderedBoards, setRenderedBoards] = useState([])
+
+  useEffect(() => {
+    httpRequest(BASE_URL).then(boardList => {
+      setRenderedBoards(boardList)}) 
+  },[])
 
   const filterData = (type) => {
     const filteredData = filterBoards(data,type);

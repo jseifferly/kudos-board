@@ -5,18 +5,26 @@ import CreateBoardForm from './CreateBoardForm';
 
 export default function BoardList({ data }) {
     
+    if(data){
     return (
+            <div>
+                <button>Create a New Board</button>
+                <CreateBoardForm />
+
+                <section className='board-list'>
+                    {data.map((board) => {
+                        return <BoardCard board={board} key={board.id}/>
+                    })}
+                </section>
+
+            </div>
+        );
+    }
+
+    return(
         <div>
-            <button>Create a New Board</button>
-            <CreateBoardForm />
-
-            <section className='board-list'>
-                {data.map((board) => {
-                    return <BoardCard board={board} key={board.id}/>
-                })}
-            </section>
-
+            <p>No Data</p>
         </div>
-    );
+    )
 
 }

@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
@@ -13,11 +12,9 @@ const routes = createBrowserRouter([
   {
     path: '/boards',
     element: <BoardDetails />
-  },
+  }
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <RouterProvider router={routes} />
-  </StrictMode>,
 )
