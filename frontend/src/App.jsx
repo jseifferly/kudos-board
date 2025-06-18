@@ -1,33 +1,47 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Navagation from './components/Navagation'
 import BoardList from './components/BoardList'
 import Footer from './components/Footer'
-import { filterBoards, searchForSubstring} from './utils/utils.js'
+import { filterBoards, searchForSubstring, httpRequest} from './utils/utils.js'
 
-import data from './data/data'
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function App() {
 
-  //Create a state to store the currently rendered boards
-  const [renderedBoards, setRenderedBoards] = useState(data)
+  const [renderedBoards, setRenderedBoards] = useState([])
 
-  const filterData = (type) => {
-    const filteredData = filterBoards(data,type);
+  useEffect(() => {
+    httpRequest(BASE_URL, 'GET').then(boardList => {setRenderedBoards(boardList)});
+  },[])
+
+  const handleDelete = async (id) => {
+    setRenderedBoards(renderedBoards.filter(element => element.id !== id));
+    const BOARD_URL = new URL(`boards/${id}`,BASE_URL)
+    await httpRequest(BOARD_URL,'DELETE')
+  }
+
+  const handleCreate = async (newData) => {
+    const newBoard = await httpRequest(BASE_URL, 'POST', newData);
+    setRenderedBoards([...renderedBoards,newBoard]);
+  }
+
+  const filterData = async (type) => {
+    const filteredData = await filterBoards(renderedBoards,type);
     setRenderedBoards(filteredData);
   }
 
   const searchData = (searchTerm) => {
-    const searchedData = searchForSubstring(data, searchTerm);
+    const searchedData = searchForSubstring(renderedBoards, searchTerm);
     setRenderedBoards(searchedData);
   }
 
   return (
     <>
       <Header />
-      <Navagation filter={filterData} search={searchData}/>
-      <BoardList data={renderedBoards}/>
+      <Navagation onFilter={filterData} onSearch={searchData}/>
+      <BoardList data={renderedBoards} onDelete={handleDelete} onCreate={handleCreate}/>
       <Footer />
     </>
   )
