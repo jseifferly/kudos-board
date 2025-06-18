@@ -25,7 +25,22 @@ server.get('/api/boards', async (req,res,next) => {
     }
 })
 
-// [POST/VALIDATE-DATA]
+// [GET] /api/boards/:id
+server.get('/api/boards/:id', async (req,res,next) => {
+    const id = Number(req.params.id);
+    try{
+        const boards = await Board.findBoardById(id);
+        if(boards.length){
+            res.json(boards);
+        }else {
+            next({ status: 404, message: 'No boards found match the search criteria' });
+        }
+    } catch (err) {
+    next(err);
+    }
+})
+
+// [VALIDATE-DATA]
 const validatePostData = (title, author, type, img) => {
     if (!title || !type || !img){
         return {status: 400, message: 'All required fields not provided'};
