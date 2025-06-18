@@ -1,8 +1,10 @@
+import { Link } from "react-router"
+
 export default function BoardButtons() {
 
     return(
         <div>
-            <button>View Board</button>
+            <Link to='/boards'>View Board</Link>
             <button>Delete Board</button>
         </div>
     );
