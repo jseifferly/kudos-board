@@ -40,7 +40,7 @@ function App() {
   return (
     <>
       <Header />
-      <Navagation filter={filterData} search={searchData}/>
+      <Navagation onFilter={filterData} onSearch={searchData}/>
       <BoardList data={renderedBoards} onDelete={handleDelete} onCreate={handleCreate}/>
       <Footer />
     </>

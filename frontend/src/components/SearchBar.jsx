@@ -1,7 +1,7 @@
 import '../styles/SearchBar.css'
 import { useState } from 'react';
 
-export default function SearchBar({ search }) {
+export default function SearchBar({ search, filter }) {
 
     const [searchTerm, setSearchTerm] = useState('')
 
@@ -18,6 +18,7 @@ export default function SearchBar({ search }) {
     const handleClear = () => {
         setSearchTerm('')
         search('')
+        filter('all')
     }
 
     return (
