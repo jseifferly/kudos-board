@@ -36,13 +36,18 @@ export default function CreateBoardForm({ modalDisplay, onClose, onCreate }) {
                         name="title"
                         value={formData.title}
                         onChange={handleInputChange}
+                        required
                 /><br />
                 <p>Catagory</p>
-                <input  type="text" 
+                <select
                         name="type"
                         value={formData.type}
                         onChange={handleInputChange}
-                /><br />
+                        required>
+                <option value="Celebration">Celebration</option>
+                <option value="Thank You">Thank You</option>
+                <option value="Inspiration">Inspiration</option>
+                </select><br />
                 <p>Author:</p>
                 <input  type="text" 
                         name="author"
