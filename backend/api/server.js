@@ -8,11 +8,13 @@ server.use(express.json());
 server.use(cors());
 server.use(helmet());
 
+// -------------------BOARD ROUTING------------------- //
+
 // [GET] /api/boards
 server.get('/api/boards', async (req,res,next) => {
     const query = req.query;
     try{
-        const boards = await Board.find(query);
+        const boards = await Board.findBoard(query);
         if(boards.length){
             res.json(boards);
         }else {
@@ -27,7 +29,7 @@ server.get('/api/boards', async (req,res,next) => {
 server.get('/api/boards/:id', async (req, res, next) => {
     const id = Number(req.params.id);
     try {
-        const board = await Board.findById(id);
+        const board = await Board.findBoardById(id);
         if(board) {
             res.json(board);
         }else {
@@ -58,7 +60,7 @@ server.post('/api/boards', async (req, res, next) => {
         if(valadationErr){
             next(valadationErr);
         }
-        const created = await Board.create(newBoard);
+        const created = await Board.createBoard(newBoard);
         res.status(201).json(created);
     } catch (err) {
         next(err);
@@ -69,9 +71,9 @@ server.post('/api/boards', async (req, res, next) => {
 server.delete('/api/boards/:id', async (req, res, next) => {
     const id = Number(req.params.id);
     try{
-        const board = await Board.findById(id);
+        const board = await Board.findBoardById(id);
         if(board) {
-            const deleted = await Board.delete(id);
+            const deleted = await Board.deleteBoard(id);
             res.json(deleted);
         } else {
             next({status: 404, message: 'Board not found'});
@@ -80,6 +82,27 @@ server.delete('/api/boards/:id', async (req, res, next) => {
         next(err);
     }
 })
+
+// --------------------CARD ROUTING------------------- //
+
+server.get('/api/boards/:id/cards', async (req, res, next) => {
+    const id = Number(req.params.id);
+    try {
+        const board = await Board.findBoardById(id);
+        if (board) {
+            res.json(board.cards);
+        }else {
+            next({status: 404, message: 'Board not found'});
+        }
+    } catch (err) {
+        next(err);
+    }
+})
+
+
+
+
+
 
 // [CATCH-ALL] 
 server.use((req, res, next) => {
