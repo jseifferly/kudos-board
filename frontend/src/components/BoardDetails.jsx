@@ -1,6 +1,10 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import { httpRequest } from "../utils/utils";
+import BoardHeader from "./BoardHeader";
+import NewCardButton from "./NewCardButton";
+import CardList from "./CardList";
+import Footer from "./Footer";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -19,9 +23,11 @@ export default function BoardDetails() {
 
     return(
         <div>
-            <h1>{params.id}</h1>
-            <p>Cards go here</p>
+            <BoardHeader />
+            <NewCardButton />
+            <CardList />
             <Link to='/'>Go Home</Link>
+            <Footer />
         </div>
     );
 
