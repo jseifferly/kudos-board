@@ -28,7 +28,7 @@ function App() {
   }
 
   const filterData = async (type) => {
-    const filteredData = await filterBoards(renderedBoards,type);
+    const filteredData = await filterBoards(type);
     setRenderedBoards(filteredData);
   }
 

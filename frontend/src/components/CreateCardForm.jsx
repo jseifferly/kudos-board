@@ -9,7 +9,7 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
             title: '',
             description: '',
             owner: '',
-            gif: '/medal.svg',
+            gif: '',
             boardID: {boardID}
         }
 
@@ -30,6 +30,14 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
 
     const handleGifSearch = async () => {
         await gifFetch(gifQuery).then(data => {setGifData(data.data)});
+    }
+
+    const handleGifClick = evt => {
+        setFormData({
+            ...formData,
+            gif: evt.target.src
+        })
+        setGifData([])
     }
 
     const handleSubmit = evt => {
@@ -65,14 +73,11 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
                         onChange={handleGifChange}
                         placeholder="Search GIFs..."
                 /><br />
-
-                <GifContainer gifs={gifData} />
-                {//on Search gif conatiner goes here}
-}
+                <GifContainer gifs={gifData} onClick={handleGifClick}/>
                 <button type="button" onClick={handleGifSearch}>Search</button><br />
                 <input  type="text" 
                         name="gif-url"
-                        value={gifQuery}
+                        value={formData.gif}
                         onChange={handleInputChange}
                         placeholder="Enter GIF URL..."
                 /><br />

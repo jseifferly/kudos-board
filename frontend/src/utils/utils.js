@@ -1,4 +1,4 @@
-export async function filterBoards (data, type) {
+export async function filterBoards (type) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL
     const FILTER_URL = new URL(`boards/?type=${type}`,BASE_URL)
