@@ -87,7 +87,6 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
                         value={formData.owner}
                         onChange={handleInputChange}
                         placeholder="Enter Card Owner (Optional)"
-                        required
                 /><br />
                 <input type="submit"  value="Create Card"/>
             </form>
