@@ -23,9 +23,9 @@ export default function BoardDetails() {
 
     return(
         <div>
-            <BoardHeader />
+            <BoardHeader boardTitle={board ? board.title : 'Loading Title...'}/>
             <NewCardButton />
-            <CardList />
+            <CardList cards={board ? board.cards : []}/>
             <Link to='/'>Go Home</Link>
             <Footer />
         </div>
