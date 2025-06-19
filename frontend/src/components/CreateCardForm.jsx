@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { gifFetch } from "../utils/utils";
+import GifContainer from "./GifContainer";
 import '../styles/CreateBoardForm.css'
-
 
 export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreate }) {
     
@@ -13,13 +14,22 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
         }
 
     const [formData, setFormData] = useState(newCard);
-    const [gifURL, setGifURL] = useState('');
+    const [gifQuery, setGifQuery] = useState('');
+    const [gifData, setGifData] = useState([]);
 
     const handleInputChange = evt => {
         setFormData({
             ...formData,
             [evt.target.name]: evt.target.value
         })
+    }
+
+    const handleGifChange = evt => {
+        setGifQuery(evt.target.value)
+    }
+
+    const handleGifSearch = async () => {
+        await gifFetch(gifQuery).then(data => {setGifData(data.data)});
     }
 
     const handleSubmit = evt => {
@@ -51,14 +61,18 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
                 /><br />
                 <input  type="text" 
                         name="gif-search"
-                        value={gifURL}
-                        onChange={handleInputChange}
+                        value={gifQuery}
+                        onChange={handleGifChange}
                         placeholder="Search GIFs..."
                 /><br />
-                <button>Search</button><br />
+
+                <GifContainer gifs={gifData} />
+                {//on Search gif conatiner goes here}
+}
+                <button type="button" onClick={handleGifSearch}>Search</button><br />
                 <input  type="text" 
                         name="gif-url"
-                        value={gifURL}
+                        value={gifQuery}
                         onChange={handleInputChange}
                         placeholder="Enter GIF URL..."
                 /><br />

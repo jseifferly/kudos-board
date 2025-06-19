@@ -47,3 +47,17 @@ export function httpRequest(URL, method, data) {
         // Display an error message or retry the request
     });
 }
+
+export function gifFetch(query) {
+
+    const GIF_URL = 'https://api.giphy.com/v1/gifs/search'
+    const GIF_API_KEY = import.meta.env.VITE_GIPHY_API_KEY
+
+    const SEARCH_URL = new URL(`?api_key=${GIF_API_KEY}&q=${query}&limit=6`,GIF_URL);
+
+    return fetch(SEARCH_URL)
+        .then(response => {return response.json()})
+        .then(data => {return data})
+        .catch(error => console.error(error));
+    
+}
