@@ -16,7 +16,7 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
         if(card){
             setCardComments(card.comments)
         }
-    },[modalDisplay])
+    },[card])
 
     const handleMessageChange = (evt) => {
         setComment(evt.target.value)
@@ -26,6 +26,10 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
         setAuthor(evt.target.value)
     }
 
+    const clearInputs = () => {
+        setComment('');
+        setAuthor('')
+    }
 
     const postComment = async () => {
 
@@ -35,18 +39,19 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
         }
         const message = `${sender}: ${comment}`;
         card.comments.push(message)
-        setCardComments([...cardComments, message]);
 
         const CARD_URL = new URL(`boards/${boardId}/cards/${card.id}`,BASE_URL)
         const BODY = {comments: card.comments};
         await httpRequest(CARD_URL,"PUT",BODY)
+
+        clearInputs();
     }
     
     if(card){
         return(
             <section className={modalDisplay}>
                 <div className="modalContent"> 
-                        <span className='close' onClick={onClose}>X</span>
+                        <span className='close' onClick={() => {onClose(); clearInputs()}}>X</span>
                     <img src={card.gif} alt="GIF" />
                     <h2>{card.title}</h2>
                     <p>{card.description}</p>

@@ -3,4 +3,6 @@
     overflow-y: auto;
     overflow: scroll;
     max-height: 200px;
+    display: flex;
+    flex-direction: column-reverse;
 }
