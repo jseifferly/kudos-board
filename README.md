@@ -135,23 +135,21 @@ Deployed Application (**required**): [https://kudos-board-uyvf.onrender.com]
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[(https://www.loom.com/share/5090ae58c8d14c22957d86cdeaf12722)]
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+I felt that the labs focused on backend really helped in figuring out how to build my endpoints, however I didn't feel they explained how to use them that well. I think I did a lot of learning on my own in figuring out what I was supposed to be using them for. Also, setting up and using postgres could have been explained a little better it took me quite a while to once again just understand what I was doing it for.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time I would work more on fleshing out the features and making them very polished, I feel at the end I got a little sloppy so that I could finish the project not really have it work well.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I think everything went as planned and all of my features worked as intended. Seeing my peers project I wish I could have put a little more time into the css to make the design a little more modern and nice but other than that i'm happy with how mine turned out.
 
 ### Open-source libraries used
 
@@ -159,4 +157,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out my table mates Kevin, Ben, and Thomas for pulling me through this
