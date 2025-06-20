@@ -6,10 +6,15 @@ import NewCardButton from "./NewCardButton";
 import CreateCardForm from "./CreateCardForm";
 import CardList from "./CardList";
 import Footer from "./Footer";
+import { darkModeContext } from './DarkModeProvider.jsx';
+import { useContext } from 'react'
+import '../styles/DarkMode.css'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function BoardDetails() {
+
+    const {darkMode} = useContext(darkModeContext)
 
     const params = useParams();
     const [board, setBoard] = useState();
@@ -65,7 +70,9 @@ export default function BoardDetails() {
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
             <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote}/>
-            <Link to='/'>Go Home</Link>
+            <div className={darkMode ? 'button-content dark' : 'button-content light'}>
+                <Link to='/' className='go-home'>Go Home</Link>
+            </div>
             <Footer />
         </div>
     );

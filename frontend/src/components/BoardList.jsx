@@ -23,7 +23,7 @@ export default function BoardList({ data, onDelete, onCreate }) {
 
     if(data && data.length > 0){
     return (
-            <div className={darkMode ? 'dark' : 'light'}>
+            <div className={darkMode ? 'content dark' : 'content light'}>
                 <button onClick={showForm}>Create a New Board</button>
                 <CreateBoardForm modalDisplay={displayForm} onClose={closeForm} onCreate={onCreate}/>
 

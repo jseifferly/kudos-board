@@ -6,4 +6,9 @@
     border-radius: 10px;
 
     background-color: #FFFFFF;
+
+    height: auto;
+    text-align: center;
+
+    align-items: center;
 }
