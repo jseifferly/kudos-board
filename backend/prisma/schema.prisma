@@ -32,6 +32,7 @@ model Card {
     owner       String?
     pinned      Boolean    @default(false)
     votes       Int        @default(0)
+    comments    String[]
     board       Board      @relation(fields: [boardID], references: [id])
     boardID     Int
 }
