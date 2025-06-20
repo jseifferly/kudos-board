@@ -1,18 +1,32 @@
 import '../styles/Card.css'
 import CardButtons from "./CardButtons";
-import { useContext } from 'react';
-import { darkModeContext, DarkModeProvider } from './DarkModeProvider';
+import { useContext, useState } from 'react';
+import { darkModeContext} from './DarkModeProvider';
+import {httpRequest} from '../utils/utils.js'
 import '../styles/DarkMode.css'
 
-export default function Card({card, onDelete, onUpvote, onOpen}) {
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+export default function Card({card, onDelete, onUpvote, onOpen, boardId}) {
 
     const {darkMode} = useContext(darkModeContext)
 
+    const[pinned, setPinned] = useState(card.pinned)
+
+    const handlePin = async() => {
+        const CARD_URL = new URL(`boards/${boardId}/cards/${card.id}`,BASE_URL)
+        const BODY = {pinned: !pinned};
+        await httpRequest(CARD_URL,"PUT",BODY)
+
+        setPinned(!pinned);
+    }
+
     return (
         <article className={darkMode? 'card dark-card' : 'card light-card'}>
+            <img className={pinned ? 'pin-icon pinned' : 'pin-icon unpinned'} src="/pin.png" alt="PIN" onClick={handlePin}/>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
-            <img src={card.gif} alt="Card Gif" />
+            <img className='card-gif' src={card.gif} alt="Card Gif" />
             <CardButtons id={card.id} numUpvotes={card.votes} onDelete={onDelete} onUpvote={onUpvote} onOpen={onOpen}/>
         </article>
     );

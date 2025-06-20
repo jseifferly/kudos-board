@@ -44,6 +44,7 @@ export default function CreateCardForm({ modalDisplay, boardID, onClose, onCreat
         evt.preventDefault();
         setFormData(newCard)
         onCreate(formData);
+        setGifQuery('')
         onClose();
     }
 

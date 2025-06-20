@@ -11,9 +11,26 @@
     align-items: center;
 }
 
-.card img {
+.card-gif  {
     width: 200px;
     height: 200px;
     align-self: center;
     margin: 2px auto;
+}
+
+.pin-icon {
+    width: 13%;
+    float: right;
+}
+
+.pin-icon:hover {
+    cursor: pointer;
+}
+
+.pinned {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(84%) saturate(6429%) hue-rotate(355deg) brightness(88%) contrast(103%);
+}
+
+.unpinned {
+    filter: none;
 }

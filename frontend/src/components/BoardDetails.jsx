@@ -83,7 +83,7 @@ export default function BoardDetails() {
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
             <CommentModal modalDisplay={displayComment} card={card} onClose={closeComments} boardId={params.id}/>
-            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote} onOpen={showComments}/>
+            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote} onOpen={showComments} boardId={params.id}/>
             <div className={darkMode ? 'button-content dark' : 'button-content light'}>
                 <Link to='/' className='go-home'>Go Home</Link>
             </div>
