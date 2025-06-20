@@ -5,22 +5,22 @@ const prisma = new PrismaClient()
 async function main() {
     const boards = [
     {
-        img: "../public/medal.svg",
+        img: "./medal.svg",
         title: "Meow",
         type: "Thank You",
     },    
     {
-        img: "../public/medal.svg",
+        img: "./medal.svg",
         title: "Wuff",
         type: "Inspiration",
     },
     {
-        img: "../public/medal.svg",
+        img: "./medal.svg",
         title: "Mooooo",
         type: "Celebration",
     },
     {
-        img: "../public/medal.svg",
+        img: "./medal.svg",
         title: "Oink",
         type: "Thank You",
     }
