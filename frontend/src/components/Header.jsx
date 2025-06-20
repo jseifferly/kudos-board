@@ -13,7 +13,7 @@ export default function Header() {
 
     return (
         <header className={darkMode ? 'dark-header' : 'light-header'}>
-            <img src="../public/medal.svg" alt="" />
+            <img src="./medal.svg" alt="" />
             <h1>Kudos Board</h1>
             <button onClick={handleClick}>Dark Mode</button>
         </header>
