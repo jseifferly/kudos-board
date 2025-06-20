@@ -38,11 +38,25 @@ export default function BoardDetails() {
         setRenderedCards([...renderedCards,newCard]);
     }
 
-    ///api/boards/:id/cards/:id
     const handleDelete = async id => {
         setRenderedCards(renderedCards.filter(element => element.id !== id));
         const CARD_URL = new URL(`boards/${board.id}/cards/${id}`,BASE_URL)
         await httpRequest(CARD_URL,'DELETE')
+    }
+
+    ///api/boards/:boardID/cards/:cardID
+    const handleUpvote = async (id,newValue) => {
+        setRenderedCards(
+            renderedCards.map((card) => {
+                if (card.id === id){
+                    return {...card, votes: newValue}
+                }
+                return card;
+            })
+        )
+        const CARD_URL = new URL(`boards/${board.id}/cards/${id}`,BASE_URL)
+        const BODY = {votes : newValue};
+        await httpRequest(CARD_URL,"PUT",BODY)
     }
 
     return(
@@ -50,7 +64,7 @@ export default function BoardDetails() {
             <BoardHeader boardTitle={board ? board.title : 'Loading Title...'}/>
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
-            <CardList cards={board ? renderedCards : []} onDelete={handleDelete}/>
+            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote}/>
             <Link to='/'>Go Home</Link>
             <Footer />
         </div>
