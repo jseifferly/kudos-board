@@ -33,7 +33,7 @@ export default function BoardDetails() {
         await httpRequest(BOARD_URL, 'GET').then(board => {setBoard(board); setRenderedCards(board.cards.sort((a,b) => {
         if (a.pinned && !b.pinned) return -1;
         if (!a.pinned && b.pinned) return 1; 
-        return a.pinnedAt - b.pinnedAt;
+        return new Date(b.pinnedAt) - new Date(a.pinnedAt);
     }))})};
 
     const showForm = () => {
