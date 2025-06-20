@@ -48,6 +48,7 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
     }
     
     if(card){
+        console.log(card);
         return(
             <section className={modalDisplay}>
                 <div className="modalContent"> 
@@ -55,7 +56,7 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
                     <img src={card.gif} alt="GIF" />
                     <h2>{card.title}</h2>
                     <p>{card.description}</p>
-                    <p>{card.author}</p>
+                    <p>{card.owner}</p>
                     <CommentBox comments={cardComments}/>
                     <input type="text" name="message" placeholder='comment...' value={comment} onChange={handleMessageChange}/>
                     <input type="text" name="author" placeholder='author(optional)...' value={author} onChange={handleAuthorChange}/>

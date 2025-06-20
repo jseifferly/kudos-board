@@ -10,3 +10,10 @@
 
     align-items: center;
 }
+
+.card img {
+    width: 200px;
+    height: 200px;
+    align-self: center;
+    margin: 2px auto;
+}
