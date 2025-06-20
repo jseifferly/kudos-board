@@ -25,12 +25,16 @@ model Board {
 }
 
 model Card {
-    id          Int @id @default(autoincrement())
+    id          Int        @id @default(autoincrement())
     title       String
     description String
     gif         String
     owner       String?
-    votes       Int @default(0)
-    board       Board @relation(fields: [boardID], references: [id])
+    pinned      Boolean    @default(false)
+    pinnedAt    DateTime?   
+    votes       Int        @default(0)
+    comments    String[]
+    board       Board      @relation(fields: [boardID], references: [id])
     boardID     Int
 }
+

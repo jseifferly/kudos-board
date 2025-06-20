@@ -1,0 +1,43 @@
+.light {
+    background-color: #CFDBDC;
+    color: black;
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
+.dark-header {
+    background-color: #95959D;
+    color: black;
+}
+
+.light-header {
+    background-color: #234343;
+    color: #CFDBDC;
+}
+
+.dark-card {
+    background-color: #95959D;
+    color: black;
+}
+
+.light-card {
+    background-color: white;
+    color: black;
+}
+
+.go-home {
+    width: 100vw;
+    border-radius: 7px;
+    border: 2px solid rgb(40, 111, 243);
+    text-decoration: none;
+    background-color: rgb(40, 111, 243);
+    color: white;
+    font-size: 20px;
+}
+
+.button-content {
+    height: 10vh;
+}
