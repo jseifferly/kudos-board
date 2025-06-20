@@ -49,9 +49,9 @@ export default function CreateBoardForm({ modalDisplay, onClose, onCreate }) {
                 <select
                         value={formData.type}
                         onChange={handleSelectedChange}
-                        defaultValue="sort"
+                        defaultValue=""
                         required>
-                <option value="sort" disabled>Sort By</option>
+                <option value="" disabled hidden>Sort By</option>
                 <option name="type" value="Celebration">Celebration</option>
                 <option name="type" value="Thank You">Thank You</option>
                 <option name="type" value="Inspiration">Inspiration</option>

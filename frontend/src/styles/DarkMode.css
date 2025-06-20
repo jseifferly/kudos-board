@@ -41,3 +41,9 @@
 .button-content {
     height: 10vh;
 }
+
+.dark button {
+    border-color: rgb(86, 86, 86);
+    background-color: #234343;
+    color: white;
+}
