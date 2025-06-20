@@ -7,7 +7,7 @@ import '../styles/DarkMode.css'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export default function Card({card, onDelete, onUpvote, onOpen, boardId}) {
+export default function Card({card, onDelete, onUpvote, onOpen, boardId, onUpdate}) {
 
     const {darkMode} = useContext(darkModeContext)
 
@@ -15,8 +15,8 @@ export default function Card({card, onDelete, onUpvote, onOpen, boardId}) {
 
     const handlePin = async() => {
         const CARD_URL = new URL(`boards/${boardId}/cards/${card.id}`,BASE_URL)
-        const BODY = {pinned: !pinned};
-        await httpRequest(CARD_URL,"PUT",BODY)
+        const BODY = {pinned: !pinned, pinnedAt: new Date()};
+        await httpRequest(CARD_URL,"PUT",BODY).then(onUpdate)
 
         setPinned(!pinned);
     }

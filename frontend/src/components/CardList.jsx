@@ -1,10 +1,10 @@
 import '../styles/CardList.css'
 import Card from "./Card";
 import { darkModeContext } from './DarkModeProvider.jsx';
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import '../styles/DarkMode.css'
 
-export default function CardList({ cards, onDelete, onUpvote, onOpen, boardId }) {
+export default function CardList({ cards, onDelete, onUpvote, onOpen, boardId, onUpdate }) {
 
     const {darkMode} = useContext(darkModeContext)
 
@@ -14,7 +14,7 @@ export default function CardList({ cards, onDelete, onUpvote, onOpen, boardId })
                 <div className='card-list'>
                     <section className='card-list'>
                         {cards.map((card) => {
-                            return <Card card={card} key={card.id} onDelete={onDelete} onUpvote={onUpvote} onOpen={onOpen} boardId={boardId}/>
+                            return <Card card={card} key={card.id} onDelete={onDelete} onUpvote={onUpvote} onOpen={onOpen} boardId={boardId} onUpdate={onUpdate}/>
                         })}
                     </section>
                 </div>

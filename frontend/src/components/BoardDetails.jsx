@@ -25,12 +25,16 @@ export default function BoardDetails() {
     const [card, setCard] = useState(null)
 
     useEffect(() => {
-        const fetchBoard = async () => {
-            const BOARD_URL = new URL(`boards/${params.id}`,BASE_URL)
-            await httpRequest(BOARD_URL, 'GET').then(board => {setBoard(board); setRenderedCards(board.cards)});
-        }
         fetchBoard()
     },[])
+
+    const fetchBoard = async () => {
+        const BOARD_URL = new URL(`boards/${params.id}`,BASE_URL)
+        await httpRequest(BOARD_URL, 'GET').then(board => {setBoard(board); setRenderedCards(board.cards.sort((a,b) => {
+        if (a.pinned && !b.pinned) return -1;
+        if (!a.pinned && b.pinned) return 1; 
+        return a.pinnedAt - b.pinnedAt;
+    }))})};
 
     const showForm = () => {
         setDisplayForm('modalDisplay')
@@ -62,7 +66,6 @@ export default function BoardDetails() {
         await httpRequest(CARD_URL,'DELETE')
     }
 
-    ///api/boards/:boardID/cards/:cardID
     const handleUpvote = async (id,newValue) => {
         setRenderedCards(
             renderedCards.map((card) => {
@@ -83,7 +86,7 @@ export default function BoardDetails() {
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
             <CommentModal modalDisplay={displayComment} card={card} onClose={closeComments} boardId={params.id}/>
-            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote} onOpen={showComments} boardId={params.id}/>
+            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote} onOpen={showComments} boardId={params.id} onUpdate={fetchBoard}/>
             <div className={darkMode ? 'button-content dark' : 'button-content light'}>
                 <Link to='/' className='go-home'>Go Home</Link>
             </div>
