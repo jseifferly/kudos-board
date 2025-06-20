@@ -1,4 +1,3 @@
-import Comment from "./Comment";
 import '../styles/CommentBox.css'
 
 export default function CommentBox({comments}) {
@@ -7,7 +6,7 @@ export default function CommentBox({comments}) {
         return(
             <div className="comment-box">
                 {comments.map((comment) => {
-                    return <Comment comment={comment}/>
+                    return <p>{comment}</p>
                 })
                 }
             </div>

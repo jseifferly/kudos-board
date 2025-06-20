@@ -1,6 +1,5 @@
 import '../styles/CreateBoardForm.css'
 import { httpRequest } from '../utils/utils';
-import Card from './Card';
 import CommentBox from './CommentBox';
 import { useState, useEffect } from 'react';
 

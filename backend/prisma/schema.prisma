@@ -31,7 +31,7 @@ model Card {
     gif         String
     owner       String?
     pinned      Boolean    @default(false)
-    pinnedAt    DateTime @default(now())
+    pinnedAt    DateTime?   
     votes       Int        @default(0)
     comments    String[]
     board       Board      @relation(fields: [boardID], references: [id])
