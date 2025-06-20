@@ -1,7 +1,6 @@
 header img {
     margin: 0 auto;
     width: 4%;
-    filter: invert(99%) sepia(65%) saturate(164%) hue-rotate(134deg) brightness(88%) contrast(95%);
 }
 
 header h2 {
@@ -10,4 +9,16 @@ header h2 {
 
 header h1 {
     font-size: 20px;
+}
+
+.light-header img {
+    filter: invert(99%) sepia(65%) saturate(164%) hue-rotate(134deg) brightness(88%) contrast(95%);
+}
+
+.dark-header img {
+    filter: none;
+}
+
+header{
+    margin: 0;
 }

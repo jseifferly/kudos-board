@@ -2,8 +2,14 @@ import '../styles/BoardList.css'
 import { useState } from 'react';
 import BoardCard from './BoardCard';
 import CreateBoardForm from './CreateBoardForm';
+import { useContext } from 'react';
+import { darkModeContext, DarkModeProvider } from './DarkModeProvider';
+import '../styles/DarkMode.css'
+
 
 export default function BoardList({ data, onDelete, onCreate }) {
+
+    const {darkMode} = useContext(darkModeContext)
 
     const [displayForm, setDisplayForm] = useState('modalHidden')
     
@@ -17,7 +23,7 @@ export default function BoardList({ data, onDelete, onCreate }) {
 
     if(data && data.length > 0){
     return (
-            <div>
+            <div className={darkMode ? 'dark' : 'light'}>
                 <button onClick={showForm}>Create a New Board</button>
                 <CreateBoardForm modalDisplay={displayForm} onClose={closeForm} onCreate={onCreate}/>
 

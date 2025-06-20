@@ -5,15 +5,12 @@ import Navagation from './components/Navagation.jsx'
 import BoardList from './components/BoardList.jsx'
 import Footer from './components/Footer.jsx'
 import { filterBoards, searchForSubstring, httpRequest} from './utils/utils.js'
-import { darkModeContext } from './components/DarkModeProvider.jsx'
-import { useContext } from 'react'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function App() {
 
   const [renderedBoards, setRenderedBoards] = useState([])
-  const darkMode = useContext(darkModeContext)
 
   useEffect(() => {
     httpRequest(BASE_URL, 'GET').then(boardList => {setRenderedBoards(boardList)});
@@ -41,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className={!darkMode ? 'dark': 'light'}>
+    <div>
       <Header />
       <Navagation onFilter={filterData} onSearch={searchData}/>
       <BoardList data={renderedBoards} onDelete={handleDelete} onCreate={handleCreate}/>

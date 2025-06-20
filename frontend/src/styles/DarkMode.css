@@ -1,0 +1,29 @@
+.light {
+    background-color: #CFDBDC;
+    color: black;
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
+.dark-header {
+    background-color: #888888;
+    color: black;
+}
+
+.light-header {
+    background-color: #234343;
+    color: #CFDBDC;
+}
+
+.dark-card {
+    background-color: lightgray;
+    color: black;
+}
+
+.light {
+    background-color: white;
+    color: black;
+}
