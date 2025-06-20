@@ -19,7 +19,7 @@ export async function filterBoards (type) {
 
 export function searchForSubstring(data, string) {
     const filteredData = [...data]
-    return filteredData.filter(board => board.title.includes(string));
+    return filteredData.filter(board => board.title.toLowerCase().includes(string.toLowerCase()));
 }
 
 export function httpRequest(URL, method, data) {

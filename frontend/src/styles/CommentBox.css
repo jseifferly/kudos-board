@@ -1,0 +1,6 @@
+.comment-box {
+    background-color: white;
+    overflow-y: auto;
+    overflow: scroll;
+    max-height: 200px;
+}

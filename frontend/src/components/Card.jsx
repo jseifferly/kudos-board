@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { darkModeContext, DarkModeProvider } from './DarkModeProvider';
 import '../styles/DarkMode.css'
 
-export default function Card({card, onDelete, onUpvote}) {
+export default function Card({card, onDelete, onUpvote, onOpen}) {
 
     const {darkMode} = useContext(darkModeContext)
 
@@ -13,7 +13,7 @@ export default function Card({card, onDelete, onUpvote}) {
             <h3>{card.title}</h3>
             <p>{card.description}</p>
             <img src={card.gif} alt="Card Gif" />
-            <CardButtons id={card.id} numUpvotes={card.votes} onDelete={onDelete} onUpvote={onUpvote}/>
+            <CardButtons id={card.id} numUpvotes={card.votes} onDelete={onDelete} onUpvote={onUpvote} onOpen={onOpen}/>
         </article>
     );
 }

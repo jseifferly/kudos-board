@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router";
+import { useParams, Link, redirect } from "react-router";
 import { useState, useEffect } from "react";
 import { httpRequest } from "../utils/utils";
 import BoardHeader from "./BoardHeader";
 import NewCardButton from "./NewCardButton";
 import CreateCardForm from "./CreateCardForm";
+import CommentModal from "./CommentModal.jsx";
 import CardList from "./CardList";
 import Footer from "./Footer";
 import { darkModeContext } from './DarkModeProvider.jsx';
@@ -20,6 +21,8 @@ export default function BoardDetails() {
     const [board, setBoard] = useState();
     const [renderedCards, setRenderedCards] = useState([]);
     const [displayForm, setDisplayForm] = useState('modalHidden')
+    const [displayComment, setDisplayComment] = useState('modalHidden')
+    const [card, setCard] = useState(null)
 
     useEffect(() => {
         const fetchBoard = async () => {
@@ -35,6 +38,16 @@ export default function BoardDetails() {
 
     const closeForm = () => {
         setDisplayForm('modalHidden')
+    }
+
+    const showComments = async (id) => {
+        const Card = renderedCards.find(card => card.id === id)
+        await setCard(Card)
+        setDisplayComment('modalDisplay')
+    }
+
+    const closeComments= () => {
+        setDisplayComment('modalHidden')
     }
 
     const handleCreate = async (newData) => {
@@ -69,7 +82,8 @@ export default function BoardDetails() {
             <BoardHeader boardTitle={board ? board.title : 'Loading Title...'}/>
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
-            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote}/>
+            <CommentModal modalDisplay={displayComment} card={card} onClose={closeComments} boardId={params.id}/>
+            <CardList cards={board ? renderedCards : []} onDelete={handleDelete} onUpvote={handleUpvote} onOpen={showComments}/>
             <div className={darkMode ? 'button-content dark' : 'button-content light'}>
                 <Link to='/' className='go-home'>Go Home</Link>
             </div>
