@@ -38,13 +38,19 @@ export default function BoardDetails() {
         setRenderedCards([...renderedCards,newCard]);
     }
 
+    ///api/boards/:id/cards/:id
+    const handleDelete = async id => {
+        setRenderedCards(renderedCards.filter(element => element.id !== id));
+        const CARD_URL = new URL(`boards/${board.id}/cards/${id}`,BASE_URL)
+        await httpRequest(CARD_URL,'DELETE')
+    }
 
     return(
         <div>
             <BoardHeader boardTitle={board ? board.title : 'Loading Title...'}/>
             <NewCardButton onOpen={showForm}/>
             <CreateCardForm boardID={board ? board.id : 0} modalDisplay={displayForm} onClose={closeForm} onCreate={handleCreate}/>
-            <CardList cards={board ? renderedCards : []}/>
+            <CardList cards={board ? renderedCards : []} onDelete={handleDelete}/>
             <Link to='/'>Go Home</Link>
             <Footer />
         </div>

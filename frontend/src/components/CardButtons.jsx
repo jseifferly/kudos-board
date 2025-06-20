@@ -1,9 +1,9 @@
-export default function CardButtons({ numUpvotes }) {
+export default function CardButtons({ id, numUpvotes, onDelete }) {
 
     return (
         <div>
             <button>Upvote: {numUpvotes}</button>
-            <button>Delete</button>
+            <button onClick={() => onDelete(id)}>Delete</button>
         </div>
     );
 }
