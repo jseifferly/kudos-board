@@ -1,4 +1,4 @@
-export async function filterBoards (data, type) {
+export async function filterBoards (type) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL
     const FILTER_URL = new URL(`boards/?type=${type}`,BASE_URL)
@@ -18,7 +18,6 @@ export async function filterBoards (data, type) {
 }
 
 export function searchForSubstring(data, string) {
-
     const filteredData = [...data]
     return filteredData.filter(board => board.title.includes(string));
 }
@@ -46,4 +45,18 @@ export function httpRequest(URL, method, data) {
         console.error('Error fetching boards:', error);
         // Display an error message or retry the request
     });
+}
+
+export function gifFetch(query) {
+
+    const GIF_URL = 'https://api.giphy.com/v1/gifs/search'
+    const GIF_API_KEY = import.meta.env.VITE_GIPHY_API_KEY
+
+    const SEARCH_URL = new URL(`?api_key=${GIF_API_KEY}&q=${query}&limit=6`,GIF_URL);
+
+    return fetch(SEARCH_URL)
+        .then(response => {return response.json()})
+        .then(data => {return data})
+        .catch(error => console.error(error));
+    
 }

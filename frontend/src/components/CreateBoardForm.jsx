@@ -19,6 +19,13 @@ export default function CreateBoardForm({ modalDisplay, onClose, onCreate }) {
         })
     }
 
+    const handleSelectedChange = evt => {
+        setFormData({
+            ...formData,
+            type: evt.target.value
+        })
+    }
+
     const handleSubmit = evt => {
         evt.preventDefault();
         setFormData(newBoard)
@@ -40,13 +47,12 @@ export default function CreateBoardForm({ modalDisplay, onClose, onCreate }) {
                 /><br />
                 <p>Catagory</p>
                 <select
-                        name="type"
                         value={formData.type}
-                        onChange={handleInputChange}
+                        onChange={handleSelectedChange}
                         required>
-                <option value="Celebration">Celebration</option>
-                <option value="Thank You">Thank You</option>
-                <option value="Inspiration">Inspiration</option>
+                <option name="type" value="Celebration">Celebration</option>
+                <option name="type" value="Thank You">Thank You</option>
+                <option name="type" value="Inspiration">Inspiration</option>
                 </select><br />
                 <p>Author:</p>
                 <input  type="text" 

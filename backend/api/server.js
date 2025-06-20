@@ -29,11 +29,11 @@ server.get('/api/boards', async (req,res,next) => {
 server.get('/api/boards/:id', async (req,res,next) => {
     const id = Number(req.params.id);
     try{
-        const boards = await Board.findBoardById(id);
-        if(boards.length){
-            res.json(boards);
+        const board = await Board.findBoardById(id);
+        if(board){
+            res.json(board);
         }else {
-            next({ status: 404, message: 'No boards found match the search criteria' });
+            next({ status: 404, message: 'No board found that match the search criteria' });
         }
     } catch (err) {
     next(err);

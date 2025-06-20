@@ -12,7 +12,7 @@ module.exports = {
 
     async findBoardById(id) {
         // SELECT * FROM "Board" WHERE id = 1;
-        const board = await prisma.board.findUnique({where: { id }})
+        const board = await prisma.board.findUnique({where: { id }, include: {cards: true} })
         return board;
     },
 

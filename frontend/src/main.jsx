@@ -10,7 +10,7 @@ const routes = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/boards',
+    path: '/board/:id',
     element: <BoardDetails />
   }
 ])
