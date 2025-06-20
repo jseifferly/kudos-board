@@ -158,7 +158,7 @@ server.delete('/api/boards/:boardID/cards/:cardID', async (req, res, next) => {
 
 // [CATCH-ALL] 
 server.use((req, res, next) => {
-    console.log('Server Catch all');
+    next();
 })
 
 //  [ERROR-HANDLING]
