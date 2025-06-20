@@ -1,6 +1,7 @@
 import '../styles/Header.css'
 import { darkModeContext } from './DarkModeProvider.jsx';
 import { useContext } from 'react'
+import '../styles/DarkMode.css'
 
 export default function Header() {
 
