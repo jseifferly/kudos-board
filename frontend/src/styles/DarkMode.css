@@ -9,7 +9,7 @@
 }
 
 .dark-header {
-    background-color: #888888;
+    background-color: #95959D;
     color: black;
 }
 
@@ -19,11 +19,11 @@
 }
 
 .dark-card {
-    background-color: lightgray;
+    background-color: #95959D;
     color: black;
 }
 
-.light {
+.light-card {
     background-color: white;
     color: black;
 }
