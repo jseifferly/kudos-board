@@ -47,7 +47,6 @@ export default function CommentModal({boardId, modalDisplay, card, onClose}) {
     }
     
     if(card){
-        console.log(card);
         return(
             <section className={modalDisplay}>
                 <div className="modalContent"> 
